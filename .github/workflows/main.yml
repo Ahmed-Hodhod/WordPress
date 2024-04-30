@@ -16,8 +16,9 @@ jobs:
     - name: Package repository
       id: package
       run: |
-        tar -czf app_$(date +"%Y-%m-%d").tar.gz .
+        ls
         touch app_$(date +"%Y-%m-%d").tar.gz
+        ls
         tar --exclude=archive.tar.gz app_$(date +"%Y-%m-%d").tar.gz .
         echo "::set-output name=package_path::app_$(date +"%Y-%m-%d").tar.gz"
         
