@@ -17,6 +17,8 @@ jobs:
       id: package
       run: |
         tar -czf app_$(date +"%Y-%m-%d").tar.gz .
+        touch app_$(date +"%Y-%m-%d").tar.gz
+        tar --exclude=archive.tar.gz app_$(date +"%Y-%m-%d").tar.gz .
         echo "::set-output name=package_path::app_$(date +"%Y-%m-%d").tar.gz"
         
     - name: Upload to S3
