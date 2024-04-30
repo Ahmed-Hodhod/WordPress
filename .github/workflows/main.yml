@@ -13,19 +13,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       
-    - name: Package repository
-      id: package
+    - name: Create archive
       run: |
-        
-        touch app_$(date +"%Y-%m-%d").tar.gz
-        ls
-        tar --exclude=app_$(date +"%Y-%m-%d").tar.gz app_$(date +"%Y-%m-%d").tar.gz .
-        echo "::set-output name=package_path::app_$(date +"%Y-%m-%d").tar.gz"
+        git archive --format=tar.gz -o app_$(date +"%Y-%m-%d").tar.gz HEAD
         
     - name: Upload to S3
       run: |
         echo "Uploading to S3"
-        aws s3 cp ${{ steps.package.outputs.package_path }} s3://${{ secrets.S3_BUCKET_NAME}} 
+        aws s3 cp app_$(date +"%Y-%m-%d").tar.gz s3://${{ secrets.S3_BUCKET_NAME }}/
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
