@@ -16,10 +16,10 @@ jobs:
     - name: Package repository
       id: package
       run: |
-        ls
+        
         touch app_$(date +"%Y-%m-%d").tar.gz
         ls
-        tar --exclude=archive.tar.gz app_$(date +"%Y-%m-%d").tar.gz .
+        tar --exclude=app_$(date +"%Y-%m-%d").tar.gz app_$(date +"%Y-%m-%d").tar.gz .
         echo "::set-output name=package_path::app_$(date +"%Y-%m-%d").tar.gz"
         
     - name: Upload to S3
