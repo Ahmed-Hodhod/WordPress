@@ -7,14 +7,14 @@ on:
 
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Upload to S3
+    - name: deploy to ASG
       run: |
         echo "Uploading to S3"
         aws s3 ls 
