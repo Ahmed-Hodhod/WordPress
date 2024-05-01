@@ -34,32 +34,36 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }} 
 
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
+  
     steps:
+    - name: Install AWS CLI
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y awscli
+  
     - uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-region: ${{ secrets.AWS_REGION }}
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
+  
     - name: Deploy to ASG
       run: |
-
-        instance_ids=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-name hodhod --query 'AutoScalingGroups[].Instances[].InstanceId' --output text)
+        export instance_ids=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-name hodhod --query 'AutoScalingGroups[].Instances[].InstanceId' --output text)
         echo ${{ secrets.PEM_FILE }} > key.pem && chmod 600 key.pem
         
         echo $instance_ids 
         
         for instance_id in $instance_ids; do
           public_ip=$(aws ec2 describe-instances --instance-ids $instance_id --query 'Reservations[].Instances[].PublicIpAddress' --output text)
-
+  
           ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@$public_ip "
             cd /home/ec2-user
             aws s3 cp s3://hodhod-app/app_$(date +"%Y-%m-%d").tar.gz  ./test
             "
         done
+
 
