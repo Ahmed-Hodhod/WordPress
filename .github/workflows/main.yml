@@ -40,8 +40,10 @@ jobs:
     needs: build
 
     steps:
-    - name: Deploy to Auto Scaling Group
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
+    - name: Deploy to Ec2 
       run: |
         export instance_ids=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-name hodhod --query 'AutoScalingGroups[].Instances[].InstanceId' --output text)
         echo ${{ secrets.PEM_FILE }} > key.pem && chmod 600 key.pem
