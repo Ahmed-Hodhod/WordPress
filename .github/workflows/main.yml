@@ -28,7 +28,7 @@ jobs:
   
           ssh -o StrictHostKeyChecking=no -i PEM_FILE ec2-user@$public_ip "
             cd /home/ec2-user
-            aws s3 cp s3://hodhod-app/app_$(date +"%Y-%m-%d").tar.gz  ./test
+            sudo aws s3 cp s3://hodhod-app/app_$(date +"%Y-%m-%d").tar.gz  ./test
             "
         done
         
