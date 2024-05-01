@@ -62,8 +62,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          instance-ids: |
-            i-03fe66d2b7251d597
+          instance-ids: ${{ steps.get-instances.outputs.instance_ids }}
           
           working-directory: /home/ec2-user
           command: echo "instance are  ${{ steps.get-instances.outputs.instance_ids }}" &&  aws s3 cp s3://hodhod-app/app_$(date +"%Y-%m-%d").tar.gz  ./test
