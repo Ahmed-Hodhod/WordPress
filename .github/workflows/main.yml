@@ -46,6 +46,8 @@ jobs:
         export instance_ids=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-name hodhod --query 'AutoScalingGroups[].Instances[].InstanceId' --output text)
         echo ${{ secrets.PEM_FILE }} > key.pem && chmod 600 key.pem
         
+        echo $instance_ids 
+        
         for instance_id in $instance_ids; do
           public_ip=$(aws ec2 describe-instances --instance-ids $instance_id --query 'Reservations[].Instances[].PublicIpAddress' --output text)
 
