@@ -41,10 +41,9 @@ jobs:
       - uses: actions/checkout@v2    
       - name: Deploy to Auto Scaling Group
         run: |
-  
           # Get the instance IDs of instances in the Auto Scaling Group
           export instance_ids=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-name hodhod --query 'AutoScalingGroups[].Instances[].InstanceId' --output text)
-          done
+          
         
       - name: AWS SSM Send-Command
         uses: peterkimzz/aws-ssm-send-command@master
