@@ -60,7 +60,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          instance-ids: i-0c8fd752a43c7646a
+          instance-ids:${{ secrets.INSTANCE_ID }}
 
           working-directory: /home/ubuntu
           command: touch ./test/file
