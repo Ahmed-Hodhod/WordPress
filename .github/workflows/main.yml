@@ -50,7 +50,7 @@ jobs:
           public_ip=$(aws ec2 describe-instances --instance-ids $instance_id --query 'Reservations[].Instances[].PublicIpAddress' --output text)
 
           ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@$public_ip "
-            cd /home/ec2-user/test
+            cd /home/ec2-user
             aws s3 cp s3://hodhod-app/app_$(date +"%Y-%m-%d").tar.gz  ./test
             "
         done
