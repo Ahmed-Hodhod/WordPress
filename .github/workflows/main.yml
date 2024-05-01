@@ -52,10 +52,10 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          instance-ids:  $instance_ids # ${{ secrets.INSTANCE_ID }}
+          instance-ids: $instance_ids # ${{ secrets.INSTANCE_ID }}
 
           working-directory: /home/ec2-user
-          command:  aws s3 cp s3://hodhod-app/app_$(date +"%Y-%m-%d").tar.gz  ./test
+          command: echo $instance_ids &&  aws s3 cp s3://hodhod-app/app_$(date +"%Y-%m-%d").tar.gz  ./test
           comment: Hello world!
 
       # Catch SSM outputs
