@@ -19,8 +19,8 @@ jobs:
         echo "Pushing to ASG"
         instance_ids=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-name hodhod --query 'AutoScalingGroups[].Instances[].InstanceId' --output text)
         echo $instance_ids
-        echo ${{ secrets.PEM_FILE }} > key.pem && chmod 600 key.pem
-        cat key.pem
+        echo ${{ secrets.PEM_FILE }} > PEM_FILE && chmod 600 PEM_FILE
+        cat PEM_FILE
         
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
