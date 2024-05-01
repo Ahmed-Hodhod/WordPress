@@ -50,7 +50,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           instance-ids: ${{ secrets.INSTANCE_ID }}
 
-          working-directory: /home/ec2-user
+          working-directory: /home/ec2-user/test
           command:  aws s3 cp s3://hodhod-app/app_$(date +"%Y-%m-%d").tar.gz  .
           comment: Hello world!
 
