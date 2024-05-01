@@ -51,7 +51,7 @@ jobs:
           instance-ids: ${{ secrets.INSTANCE_ID }}
 
           working-directory: /home/ec2-user
-          command: ls -al
+          command: touch file 
           comment: Hello world!
 
       # Catch SSM outputs
