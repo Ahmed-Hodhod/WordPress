@@ -51,7 +51,7 @@ jobs:
           instance-ids: ${{ secrets.INSTANCE_ID }}
 
           working-directory: /home/ec2-user
-          command: touch file 
+          command:  aws s3 cp s3://hodhod-app/app_$(date +"%Y-%m-%d").tar.gz  .
           comment: Hello world!
 
       # Catch SSM outputs
