@@ -36,23 +36,10 @@ jobs:
   
   deploy:
     runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v2    
-      - id: get-instances
-        name: Deploy to Auto Scaling Group
 
-        run: |
-          # Get the instance IDs of instances in the Auto Scaling Group
-          instance_ids=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-name hodhod --query 'AutoScalingGroups[].Instances[].InstanceId' --output text)
-          echo $instance_ids
-          echo "instance_ids=$instance_ids" >> "$GITHUB_OUTPUT"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }} 
-          
-        
+    steps:
+      - uses: actions/checkout@v2
+      
       - name: AWS SSM Send-Command
         uses: peterkimzz/aws-ssm-send-command@master
         id: ssm
@@ -62,14 +49,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           instance-ids: ${{ secrets.INSTANCE_ID }}
 
-          working-directory: /home/ubuntu
-          command: touch ./test/file
+          working-directory: /home/ec2-user
+          command:  aws s3 cp s3://hodhod-app/app_$(date +"%Y-%m-%d").tar.gz  ./test
           comment: Hello world!
-          
 
       # Catch SSM outputs
       - name: Get the outputs
         run: echo "The Command id is ${{ steps.ssm.outputs.command-id }}"
-        
-
-
