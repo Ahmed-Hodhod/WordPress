@@ -41,8 +41,6 @@ jobs:
       - uses: actions/checkout@v2    
       - name: Deploy to Auto Scaling Group
         run: |
-          # Get the Auto Scaling Group name
-          auto_scaling_group_name=$(aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[?AutoScalingGroupName==your-auto-scaling-group-name].AutoScalingGroupName' --output text)
   
           # Get the instance IDs of instances in the Auto Scaling Group
           export instance_ids=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-name hodhod --query 'AutoScalingGroups[].Instances[].InstanceId' --output text)
