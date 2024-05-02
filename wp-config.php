@@ -26,7 +26,7 @@ define( 'DB_NAME', 'hodhod' );
 define( 'DB_USER', 'hodhod' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'hodhod01144' );
+define( 'DB_PASSWORD', 'hodhod0114496' );
 
 /** Database hostname */
 define( 'DB_HOST', '10.0.133.166' );
