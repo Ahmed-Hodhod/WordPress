@@ -26,10 +26,10 @@ define( 'DB_NAME', 'hodhod' );
 define( 'DB_USER', 'hodhod' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'hodhod0114496' );
+define( 'DB_PASSWORD', 'hodhod01144' );
 
 /** Database hostname */
-define( 'DB_HOST', '34.203.195.22' );
+define( 'DB_HOST', 'ec2-44-220-84-85.compute-1.amazonaws.com:3306' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
