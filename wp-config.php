@@ -20,16 +20,16 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wordpress' );
+define( 'DB_NAME', 'hodhod' );
 
 /** Database username */
 define( 'DB_USER', 'hodhod' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'hodhod0114496' );
+define( 'DB_PASSWORD', 'hodhod01144' );
 
 /** Database hostname */
-define( 'DB_HOST', '10.0.133.166:3306' );
+define( 'DB_HOST', '54.85.57.207:3306' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
