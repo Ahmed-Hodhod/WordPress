@@ -29,7 +29,7 @@ define( 'DB_USER', 'hodhod' );
 define( 'DB_PASSWORD', 'hodhod01144' );
 
 /** Database hostname */
-define( 'DB_HOST', '10.0.9.87:3306' );
+define( 'DB_HOST', '10.0.141.88:3306' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
